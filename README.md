@@ -7,8 +7,6 @@
 
 > A machine learning project to predict the 2024/2025 season of the English Premier League
 
-### 🏠 [Homepage](https://github.com/abdulkareemakn/exRES)
-
 ## Install
 
 ```sh
@@ -28,6 +26,17 @@ uv run src/standings.py
 
 * Website: abdulkareem.codes
 * Github: [@abdulkareemakn](https://github.com/abdulkareemakn)
+
+## Acknowledgement
+The dataset for this project was obtained from [Club Football Match Data](https://github.com/xgabora/Club-Football-Match-Data-2000-2025/)
+
+Author: Adam Gábor
+
+ORCID: https://orcid.org/0009-0001-9252-5976
+
+Affiliation: Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava
+
+Year: 2025
 
 ## Show your support
 
