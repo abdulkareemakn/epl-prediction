@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>exRES — EPL Prediction Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-name">ex<span class="accent">RES</span></div>
+          <div class="brand-sub">Expected Result &mdash; EPL Match Prediction</div>
+        </div>
+        <div class="header-badges">
+          <span class="badge badge-season">2024 / 25</span>
+          <span class="badge badge-model">XGBoost</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <div class="zone-legend">
+        <div class="legend-item" data-zone="cl">
+          <span class="legend-dot"></span>Champions League (Top 4)
+        </div>
+        <div class="legend-item" data-zone="europa">
+          <span class="legend-dot"></span>Europa League (5th)
+        </div>
+        <div class="legend-item" data-zone="conference">
+          <span class="legend-dot"></span>Conference League (6th)
+        </div>
+        <div class="legend-item" data-zone="relegation">
+          <span class="legend-dot"></span>Relegation (18th–20th)
+        </div>
+      </div>
+
+      <section class="tables-grid">
+
+        <div class="table-panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Predicted Standings</h2>
+              <p class="panel-sub">XGBoost model output</p>
+            </div>
+            <div class="panel-tag predicted">Model</div>
+          </div>
+          <div class="table-scroll">
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th class="th-pos">#</th>
+                  <th class="th-club" colspan="2">Club</th>
+                  <th>P</th>
+                  <th>W</th>
+                  <th>D</th>
+                  <th>L</th>
+                  <th class="th-pts">Pts</th>
+                </tr>
+              </thead>
+              <tbody id="predicted-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Actual Standings</h2>
+              <p class="panel-sub">2024/25 final table</p>
+            </div>
+            <div class="panel-tag real">Final</div>
+          </div>
+          <div class="table-scroll">
+            <table class="standings-table">
+              <thead>
+                <tr>
+                  <th class="th-pos">#</th>
+                  <th class="th-club" colspan="2">Club</th>
+                  <th>P</th>
+                  <th>W</th>
+                  <th>D</th>
+                  <th>L</th>
+                  <th class="th-pts">Pts</th>
+                </tr>
+              </thead>
+              <tbody id="actual-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+            <section class="stats-bar">
+        <div class="stat-card">
+          <div class="stat-value">0.85</div>
+          <div class="stat-label">Spearman Rank Correlation</div>
+          <div class="stat-sub">between predicted &amp; actual table</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">53.95%</div>
+          <div class="stat-label">Model Accuracy</div>
+          <div class="stat-sub">bookmaker baseline: 54.21%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">380</div>
+          <div class="stat-label">Matches Predicted</div>
+          <div class="stat-sub">full 2024/25 season</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">3 / 3</div>
+          <div class="stat-label">Relegated Clubs Identified</div>
+          <div class="stat-sub">all in predicted bottom 4</div>
+        </div>
+      </section>
+
+
+      <section class="comparison-panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Position Comparison</h2>
+            <p class="panel-sub">Predicted vs actual — sorted by actual finish</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th class="th-club" colspan="2">Club</th>
+                <th>Actual Pos</th>
+                <th>Actual Pts</th>
+                <th>Pred Pos</th>
+                <th>Pred Pts</th>
+                <th>Δ</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <footer class="site-footer">
+        <p>exRES is trained on English Premier League data from 2002/03 to 2023/24 using Elo ratings, rolling form, and normalised betting market probabilities.</p>
+        <p>Spearman rank correlation: <strong>ρ = 0.8496</strong> &nbsp;·&nbsp; p &lt; 0.001 &nbsp;·&nbsp; n = 20 clubs</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
