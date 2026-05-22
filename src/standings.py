@@ -2,7 +2,6 @@ import joblib
 import pandas as pd
 from scipy.stats import spearmanr
 
-# ── 1. Load ───────────────────────────────────────────────────────────────────
 val = pd.read_csv("outputs/validation.csv", parse_dates=["MatchDate"])
 le = joblib.load("models/label_encoder.pkl")
 model = joblib.load("models/xgboost_with_odds.pkl")
