@@ -21,7 +21,6 @@ from xgboost import XGBClassifier
 
 warnings.filterwarnings("ignore")
 
-# ── Configuration ─────────────────────────────────────────────────────────────
 CAT = ["HomeTeam", "AwayTeam"]
 
 NUM_BASE = [
@@ -46,7 +45,6 @@ NUM_BY_SET = {
     "with_odds": NUM_BASE + NUM_ODDS,
 }
 
-# ── 1. Load ───────────────────────────────────────────────────────────────────
 train = pd.read_csv("outputs/training.csv", parse_dates=["MatchDate"])
 val = pd.read_csv("outputs/validation.csv", parse_dates=["MatchDate"])
 
@@ -54,16 +52,6 @@ print(f"Training samples  : {len(train):,}")
 print(f"Validation samples: {len(val):,}")
 print(f"Training class distribution:\n{train['FTResult'].value_counts()}")
 print(f"\nValidation class distribution:\n{val['FTResult'].value_counts()}")
-
-# print("Train NaNs:\n", train[NUM_BASE].isnull().sum())
-# print("Val NaNs:\n", val[NUM_BASE].isnull().sum())
-
-# val[val[["HomeElo", "AwayElo"]].isnull().any(axis=1)][
-#     ["MatchDate", "HomeTeam", "AwayTeam", "HomeElo", "AwayElo"]
-# ]
-
-# raise ValueError("Stop")
-
 
 # ── 2. Encode target ──────────────────────────────────────────────────────────
 # LabelEncoder maps alphabetically: A → 0, D → 1, H → 2
